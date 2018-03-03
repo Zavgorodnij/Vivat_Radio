@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Media;
+using System.Threading;
+using System.IO;
 
 namespace Vivat_Radio
 {
@@ -25,7 +27,7 @@ namespace Vivat_Radio
     //990-Конец четвёртой пары
     class Program
     {
-        SoundPlayer player = new SoundPlayer();
+        static SoundPlayer player = new SoundPlayer();
         static int minute;
         static int hours;
         static int block=0;
@@ -36,6 +38,7 @@ namespace Vivat_Radio
             now_minute = time();
             do
             {
+                player.Dispose();
                 if (now_minute==660)
                 {
                     Console.WriteLine("start 1");
@@ -90,19 +93,27 @@ namespace Vivat_Radio
         public static void Turn_1()
         {
             status();
+            player.LoadAsync();
+            Thread.Sleep(600000);
+
         }
         //Перемена 30 минут
         public static void Turn_2()
         {
             status();
+            Thread.Sleep(1800000);
         }
         //Перемена 20 минут
         public static void Turn_3()
         {
             status();
+            Thread.Sleep(1200000);
+            
         }
+        //Перемена 10 минут
         public static void Turn_4()
         {
+            Thread.Sleep(600000);
             status();
         }
         public static void media_player()
