@@ -8,28 +8,39 @@ using System.Media;
 
 namespace Vivat_Radio
 {
-    
+    //Первая пара
+    //570-Начало первой пары
+    //660-Конец первой пары
+    //
+    //Вторая пара
+    //670-начало второй пары
+    //760-Конец второй пары
+    //
+    //Третья пара
+    //790-Начало третьей пары
+    //880-Конец третьей пары
+    //
+    //Четвертая пара
+    //900-Начало четвёртой пары
+    //990-Конец четвёртой пары
     class Program
     {
+        static int minute;
+        static int hours;
         static void Main(string[] args)
         {
-            SoundPlayer player = new SoundPlayer();
-            var now = DateTime.Now;
-            var hours = new TimeSpan(now.Hour);
-            var minute = new TimeSpan(now.Minute);
-            if (hours>minute)
-            {
-                player.LoadAsync();
-                player.Play();
-                Console.WriteLine("Good");
-            }
-            else
-            {
-                Console.WriteLine("Bad");
-            }
-            Console.WriteLine(hours);
-            Console.WriteLine(minute);
-            Console.ReadKey();
+            time();
+            
+        }
+        public static int time()
+        {
+            minute = DateTime.Now.TimeOfDay.Minutes;
+            hours = DateTime.Now.TimeOfDay.Hours;
+            return ((hours * 60) + minute);
+        }
+        public static void player()
+        {
+
         }
 
     }
