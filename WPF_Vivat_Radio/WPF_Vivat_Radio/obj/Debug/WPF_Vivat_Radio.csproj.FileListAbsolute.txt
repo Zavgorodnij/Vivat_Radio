@@ -1,0 +1,15 @@
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\bin\Debug\WPF_Vivat_Radio.exe.config
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\bin\Debug\WPF_Vivat_Radio.exe
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\bin\Debug\WPF_Vivat_Radio.pdb
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\WPF_Vivat_Radio.csprojResolveAssemblyReference.cache
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\MainWindow.g.cs
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\App.g.cs
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\WPF_Vivat_Radio_MarkupCompile.cache
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\WPF_Vivat_Radio_MarkupCompile.lref
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\MainWindow.baml
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\WPF_Vivat_Radio.g.resources
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\WPF_Vivat_Radio.Properties.Resources.resources
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\WPF_Vivat_Radio.csproj.GenerateResource.Cache
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\WPF_Vivat_Radio.csproj.CoreCompileInputs.cache
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\WPF_Vivat_Radio.exe
+C:\Users\razor\source\repos\WPF_Vivat_Radio\WPF_Vivat_Radio\obj\Debug\WPF_Vivat_Radio.pdb
