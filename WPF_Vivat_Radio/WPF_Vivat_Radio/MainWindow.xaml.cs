@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPF_Vivat_Radio
 {
@@ -38,8 +29,8 @@ namespace WPF_Vivat_Radio
         //900-Начало четвёртой пары
         //990-Конец четвёртой пары
 
-        int counter = 1;
-        string ur = @"D:\Music\Apache\";
+        static int counter = 1;
+        static string ur = @"D:\Music\Apache\";
         static int minute;
         static int hours;
         static int block = 0;
@@ -47,21 +38,17 @@ namespace WPF_Vivat_Radio
         static int mode = 0;
         public MainWindow()
         {
-            InitializeComponent();
+            Task WPF = Task.Run(() =>
+             {
+                 InitializeComponent();
+                 Name.Content = Directory.GetFiles(ur)[0];
+             });
             
-            
-        }
-        private void Start_Click(object sender, RoutedEventArgs e)
-        {
-            mode++;
-            if (mode==1)
-            {
-                mode = 0;
-            }
-        }
-        MediaPlayer mp = new MediaPlayer();
 
-        private void PlayMusic(string uri)
+        }
+        static MediaPlayer mp = new MediaPlayer();
+        
+        public static void PlayMusic(string uri)
         {
             Uri ur = new Uri(uri);
             mp.Open(ur);
@@ -69,7 +56,7 @@ namespace WPF_Vivat_Radio
             counter++;
         }
 
-        private void Mp_MediaEnded(object sender, EventArgs e)
+        public static void Mp_MediaEnded(object sender, EventArgs e)
         {
             if (counter <= Directory.GetFiles(ur).Count() - 1) PlayMusic(Directory.GetFiles(ur)[counter]);
         }
@@ -82,7 +69,10 @@ namespace WPF_Vivat_Radio
         //Перемена 10 минут
         public static void Turn_1()
         {
-            
+            PlayMusic(Directory.GetFiles(ur)[0]);
+            Console.WriteLine("iwughirg" + Directory.GetFiles(ur)[0]);
+            mp.MediaEnded += Mp_MediaEnded;
+
         }
         //Перемена 30 минут
         public static void Turn_2()
@@ -99,5 +89,75 @@ namespace WPF_Vivat_Radio
         {
             
         }
+
+        public void Broadcast_Cycle()
+        {
+            time();
+            now_minute = time();
+            now_minute = 660;
+            do
+            {
+                
+                if (now_minute == 660)
+                {
+                    Console.WriteLine("start 1");
+                    Turn_1();
+                    now_minute = now_minute + 1;
+
+                    //now_minute = 670;
+
+                }
+                if (now_minute == 670)
+                {
+                    Console.WriteLine("exit 1");
+                    mp.Stop();
+                    break;
+                    //Завершение трансляции
+                }
+                if (now_minute == 760)
+                {
+                    Console.WriteLine("start 2");
+                    Turn_2();
+                }
+                if (now_minute == 790)
+                {
+                    Console.WriteLine("exit 2");
+                    //Завершение трансляции
+                }
+                if (now_minute == 880)
+                {
+                    Console.WriteLine("start 3");
+                    Turn_3();
+                }
+                if (now_minute == 900)
+                {
+                    Console.WriteLine("Exit3");
+                    //Завершение трансляции
+                }
+                if (now_minute == 990)
+                {
+                    Console.WriteLine("start 4");
+                    Turn_4();
+                }
+                if (now_minute == 1000)
+                {
+                    Console.WriteLine("Exit 4");
+                }
+                
+
+            } while (block < 3);
+
+        }
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            Broadcast_Cycle();
+        }
+
+        private void stop_Click(object sender, RoutedEventArgs e)
+        {
+            mp.Stop();
+        }
     }
-}
+
+    }
