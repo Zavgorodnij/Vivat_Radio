@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-
+ 
 namespace WPF_Vivat_Radio
 {
     /// <summary>
@@ -13,22 +13,7 @@ namespace WPF_Vivat_Radio
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Первая пара
-        //570-Начало первой пары
-        //660-Конец первой пары
-        //
-        //Вторая пара
-        //670-начало второй пары
-        //760-Конец второй пары
-        //
-        //Третья пара
-        //790-Начало третьей пары
-        //880-Конец третьей пары
-        //
-        //Четвертая пара
-        //900-Начало четвёртой пары
-        //990-Конец четвёртой пары
-
+ 
         static int counter = 1;
         static string ur = @"D:\Music\Apache\";
         static int minute;
@@ -38,13 +23,8 @@ namespace WPF_Vivat_Radio
         static int mode = 0;
         public MainWindow()
         {
-            Task WPF = Task.Run(() =>
-             {
-                 InitializeComponent();
-                 Name.Content = Directory.GetFiles(ur)[0];
-             });
-            
-
+            InitializeComponent();
+ 
         }
         static MediaPlayer mp = new MediaPlayer();
         
@@ -55,7 +35,7 @@ namespace WPF_Vivat_Radio
             mp.Play();
             counter++;
         }
-
+ 
         public static void Mp_MediaEnded(object sender, EventArgs e)
         {
             if (counter <= Directory.GetFiles(ur).Count() - 1) PlayMusic(Directory.GetFiles(ur)[counter]);
@@ -70,58 +50,66 @@ namespace WPF_Vivat_Radio
         public static void Turn_1()
         {
             PlayMusic(Directory.GetFiles(ur)[0]);
-            Console.WriteLine("iwughirg" + Directory.GetFiles(ur)[0]);
             mp.MediaEnded += Mp_MediaEnded;
-
+ 
         }
         //Перемена 30 минут
         public static void Turn_2()
         {
-            
+            PlayMusic(Directory.GetFiles(ur)[0]);
+            mp.MediaEnded += Mp_MediaEnded;
         }
         //Перемена 20 минут
         public static void Turn_3()
         {
-            
+            PlayMusic(Directory.GetFiles(ur)[0]);
+            mp.MediaEnded += Mp_MediaEnded;
         }
         //Перемена 10 минут
         public static void Turn_4()
         {
-            
+            PlayMusic(Directory.GetFiles(ur)[0]);
+            mp.MediaEnded += Mp_MediaEnded;
         }
-
+ 
         public void Broadcast_Cycle()
         {
-            time();
-            now_minute = time();
-            now_minute = 660;
+            
             do
             {
-                
+                time();
+                now_minute = time();
+                now_minute = 660;
+ 
+                Console.WriteLine("test " + now_minute);
                 if (now_minute == 660)
                 {
                     Console.WriteLine("start 1");
                     Turn_1();
                     now_minute = now_minute + 1;
-
+ 
                     //now_minute = 670;
-
+ 
                 }
                 if (now_minute == 670)
                 {
                     Console.WriteLine("exit 1");
                     mp.Stop();
-                    break;
+                    Thread.Sleep(10000);
+                    now_minute = 760;
                     //Завершение трансляции
                 }
                 if (now_minute == 760)
                 {
                     Console.WriteLine("start 2");
                     Turn_2();
+                    Thread.Sleep(10000);
+                    now_minute = 790;
                 }
                 if (now_minute == 790)
                 {
                     Console.WriteLine("exit 2");
+                    mp.Stop();
                     //Завершение трансляции
                 }
                 if (now_minute == 880)
@@ -132,6 +120,7 @@ namespace WPF_Vivat_Radio
                 if (now_minute == 900)
                 {
                     Console.WriteLine("Exit3");
+                    mp.Stop();
                     //Завершение трансляции
                 }
                 if (now_minute == 990)
@@ -142,22 +131,22 @@ namespace WPF_Vivat_Radio
                 if (now_minute == 1000)
                 {
                     Console.WriteLine("Exit 4");
+                    mp.Stop();
                 }
-                
-
+ 
+ 
             } while (block < 3);
-
         }
-
+ 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
             Broadcast_Cycle();
         }
-
+ 
         private void stop_Click(object sender, RoutedEventArgs e)
         {
             mp.Stop();
         }
     }
-
+ 
     }
